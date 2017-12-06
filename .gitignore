@@ -31,3 +31,13 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# API Key
+<<<<<<< HEAD
+/comic-key.R
+
+# DS Store
+/.DS_Store
+=======
+/api-key.R
+>>>>>>> alaina-branch
