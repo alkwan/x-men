@@ -63,10 +63,10 @@ shinyUI(
     tabPanel("Report by Publisher", sidebarLayout(
       sidebarPanel(
         h4("need a title"),
-        selectizeInput("publisher", "Publisher 1", publishers, multiple = FALSE,
+        selectizeInput("publisher1", "Publisher 1", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue(""); }'))),
-        selectizeInput("publisher", "Publisher 2", publishers, multiple = FALSE,
+        selectizeInput("publisher2", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue(""); }')))
       ),
@@ -77,12 +77,7 @@ shinyUI(
         h4("Clustering analysis for all shot data"),
         p(h5("Firstly, we group all data of the player. Different colors represent different clusters")),
         fluidRow(column=8,
-                  plotOutput("plotc1",width = "800", height = "600"),align="Center"),
-                  br(),
-                  h4("Clustering analysis for all made shot"),
-                  p(h5("Also, a similar analysis is conducted with the data of made shot. The player may be able to shoot more accurately in some specific area. Therefore, clustering the made shot will be also helpful to formulate a specific defending strategy."),align="Justify"),
-        fluidRow(column=8,
-                  plotOutput("chart",width = "800", height = "600"),align="Center")
+                  plotlyOutput('chart',width = "800", height = "600"),align="Center")
                               
       )
     )
