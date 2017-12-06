@@ -7,26 +7,24 @@ library(plotly)
 
 source('./data/comicvine-data.R')
 
-shinyUI(navbarPage(theme = shinytheme("lumen"),"Gender Diversity in Comics", position = "fixed-top",
+shinyUI(navbarPage(theme = shinytheme("lumen"),"Gender Diversity in Comics", position = "static-top",
                    tabPanel("Project Description",
-                     mainPanel(
-                       h1("About our Project"),
-                       p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
-                          Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
-                          we looked at ", 
-                         a("Comic Vine", href = "https://comicvine.gamespot.com/api/"),"'s API. Our goal with this project is to
-                          see if there are any disparities between gender when it comes to comic book characters. If there are, where do they
-                          appear?"
-                         ),
-                       
-                       h1("The Data"),
-                       
-                       p("We sorted through Comic Vine's extensive comic book character data in order to determine..."),
-                       
-                       h1("Our Audience"),
-                       
-                       p("Some description of our audience.")
-                   )),
+                     h2("About our Project"),
+                     p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
+                        Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
+                        we looked at ",a("Comic Vine", href = "https://comicvine.gamespot.com/api/"),"'s API. Our goal with this project is to
+                        see if there are any disparities between gender when it comes to comic book characters. If there are, where do they
+                        appear?"
+                       ),
+                     
+                     h2("The Data"),
+                     
+                     p("We sorted through Comic Vine's extensive comic book character data in order to determine..."),
+                     
+                     h2("Our Audience"),
+                     
+                     p("Some description of our audience.")
+                   ),
                    
                    tabPanel("Superhero Comparison",sidebarLayout(
         
