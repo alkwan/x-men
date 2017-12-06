@@ -2,7 +2,8 @@ library(jsonlite)
 library(dplyr)
 library(httr)
 
-source('comic.R')
+source('comic-key.R')
+source('ui.R')
 
 url <- "http://comicvine.com/api/"
 api <- "/?api_key="
