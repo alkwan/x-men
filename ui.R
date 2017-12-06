@@ -6,7 +6,6 @@ library(shinythemes)
 library(plotly)
 
 source('./data/comicvine-data.R')
-my_autocomplete_list <- c("John Doe","Ash","Ajay sharma","Ken Chong","Will Smith","Neo")
 
 shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixed-top",
                    tabPanel("Project Description",
@@ -16,10 +15,15 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                    )),
                    
                    tabPanel("Superhero Comparison",sidebarLayout(
-                      sidebarPanel(
+        
+                     sidebarPanel(
                         h4("need a title"),
+                        br(),br(),br(),br(),br(),
+                        tags$style(type="text/css",".shiny-output-error { visibility: hidden; }",".shiny-output-error:before { visibility: hidden; }"),
+                        tags$style(type="text/css","#a { top: 50% !important;left: 50% !important;margin-top: -100px !important;margin-left: -250px !important; color: blue;font-size: 20px;font-style: italic;}"), 
+                        tags$style(type="text/css","#b { top: 50% !important;left: 50% !important;margin-top: -100px !important;margin-left: -250px !important; color: blue;font-size: 20px;font-style: italic;}"), 
                         textInput.typeahead(id="a",
-                                            placeholder="Type the name for your Superhero A, please",
+                                            placeholder="Type the name of Superhero A",
                                             local=character.names,
                                             valueKey = "name",
                                             tokens=c(1:nrow(character.names)),
