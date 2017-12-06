@@ -63,7 +63,10 @@ shinyUI(
     tabPanel("Report by Publisher", sidebarLayout(
       sidebarPanel(
         h4("need a title"),
-        selectizeInput("publisher", "Publisher", publishers, multiple = FALSE,
+        selectizeInput("publisher", "Publisher 1", publishers, multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
+                                      onInitialize = I('function() { this.setValue(""); }'))),
+        selectizeInput("publisher", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue(""); }')))
       ),
