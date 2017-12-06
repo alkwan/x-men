@@ -4,6 +4,8 @@ library(ggplot2)
 library(hexbin)
 library(shinythemes)
 library(plotly)
+
+
 shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixed-top",
                    tabPanel("Project Description",
                      mainPanel(
@@ -14,8 +16,8 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                    tabPanel("Superhero Comparison",sidebarLayout(
                       sidebarPanel(
                         h4("need a title"),
-                        select2Input("a",label = "Superhero A","",choices=c(my_autocomplete_list),type = c("input", "select")),
-                        select2Input("b", label = "Superhero B","",choices=c(my_autocomplete_list),type = c("input", "select"))
+                        select2Input("a",label = "Superhero A","",choices=as.character(name),type = c("input", "select")),
+                        select2Input("b", label = "Superhero B","",choices=as.character(name),type = c("input", "select"))
                         )
                       ),
                      
@@ -39,7 +41,7 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                 tabPanel("Report by Publisher", sidebarLayout(
                     sidebarPanel(
                       h4("need a title"),
-                      select2Input("publisher", label = "Superhero B","",choices=c(my_autocomplete_list),type = c("input", "select"))
+                      select2Input("publisher", label = "Select a publisher","",choices=as.character(publisher),type = c("input", "select"))
                     )
                   ),
                     mainPanel(
@@ -62,7 +64,7 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                   tabPanel("Report by year", sidebarLayout(
                     sidebarPanel(
                       h4("need a title"),
-                      select2Input("publisher", label = "Superhero B","",choices=c(my_autocomplete_list),type = c("input", "select"))
+                      select2Input("year", label = "Select a year","",choices=as.character(name),type = c("input", "select"))
                     ),
                     mainPanel(dataTableOutput("shotlog"))
                   ))
