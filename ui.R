@@ -4,8 +4,12 @@ library(ggplot2)
 library(hexbin)
 library(shinythemes)
 library(plotly)
-
+library(js)
 source('./data/comicvine-data.R')
+
+
+  
+  parameters <- c("A", "B", "C", "D")
 
 shinyUI(
   navbarPage(
@@ -29,28 +33,14 @@ shinyUI(
   tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
-        h4("need a title"),
-        br(),br(),br(),br(),br(),
-        tags$style(type="text/css",".shiny-output-error { visibility: hidden; }",".shiny-output-error:before { visibility: hidden; }"),
-        tags$style(type="text/css","#a { top: 50% !important;left: 50% !important;margin-top: -100px !important;margin-left: -250px !important; color: blue;font-size: 20px;font-style: italic;}"), 
-        tags$style(type="text/css","#b { top: 50% !important;left: 50% !important;margin-top: -100px !important;margin-left: -250px !important; color: blue;font-size: 20px;font-style: italic;}"), 
-        
-        textInput.typeahead(id="a",
-          placeholder="Superhero A",
-          local=character.names,
-          valueKey = "name",
-          tokens=c(1:nrow(character.names)),
-          template = HTML("<p class='repo-language'>{{info}}</p> <p class='repo-name'>{{name}}</p>")
-        ),
-          br(),br(),br(),br(),br(),
-        
-        textInput.typeahead(id="b",
-          placeholder="Superhero B",
-          local=character.names,
-          valueKey = "name",
-          tokens=c(1:nrow(character.names)),
-          template = HTML("<p class='repo-language'>{{info}}</p> <p class='repo-name'>{{name}}</p>")
-          )
+        h3("need a title"),
+        br(),
+        selectizeInput("a", "Superhero A", character.names, multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
+                       onInitialize = I('function() { this.setValue(""); }'))),
+        selectizeInput("b", "Superhero B", character.names, multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
+                                      onInitialize = I('function() { this.setValue(""); }')))
         ),
                 
       mainPanel(
@@ -73,8 +63,10 @@ shinyUI(
     tabPanel("Report by Publisher", sidebarLayout(
       sidebarPanel(
         h4("need a title"),
-        select2Input("publisher", label = "Select a publisher","",choices=as.character(publishers),type = c("input", "select"))
-    ),
+        selectizeInput("publisher", "Publisher", publishers, multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
+                                      onInitialize = I('function() { this.setValue(""); }')))
+      ),
       
       mainPanel(
         h4("Description"),
@@ -93,11 +85,35 @@ shinyUI(
     )
   ),
                    
-    tabPanel("Report by year", sidebarLayout(
+    tabPanel("Report by year", 
+             tags$head(tags$style(HTML(".multicol{font-size:15px;
+                                                  height:balance;
+                                       -webkit-column-count: 2;
+                                       -moz-column-count: 2;
+                                       column-count: 2;
+                                       }
+                                       
+                                       div.checkbox {margin-top: -10px;
+                                       margin-bottom: -25px;}"))),
+          
+             sidebarLayout(
       sidebarPanel(
+        controls <-list(tags$div(align = 'left', 
+                                 class = 'multicol', 
+                                 radioButtons(inputId  = 'year', 
+                                              label = "",
+                                              choices  = NULL,
+                                              selected = NULL,
+                                              inline   = FALSE, 
+                                              choiceNames = c("2000", "2001", "2002", "2003", "2004", "2005"), 
+                                              choiceValues = c(2000, 2001, 2002, 2003, 2004, 2005)) 
+                                 )),
+        
         h4("need a title"),
-        select2Input("year", label = "Select a year","",choices=as.character(character.names),type = c("input", "select"))
+        radioButtons("test", "Select a year", choices = NULL, selected = NULL,
+                     inline = FALSE, width = NULL, choiceNames = c("2000", "2001"), choiceValues = c(2000, 2001))
       ),
+      
       mainPanel(dataTableOutput("shotlog"))
     )
     )
