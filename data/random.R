@@ -2,9 +2,9 @@
 library(dplyr)
 
 # Read in CSVs
-comicvine.data1 <- read.csv('data/comicvine_data1.csv', stringsAsFactors = FALSE, fileEncoding = 'latin1')
-comicvine.data2 <- read.csv('data/comicvine_data2.csv', stringsAsFactors = FALSE, fileEncoding = 'latin1')
-comicvine.data3 <- read.csv('data/comicvine_data3.csv', stringsAsFactors = FALSE, fileEncoding = 'latin1')
+comicvine.data1 <- read.csv('data/comicvine_data1.csv', stringsAsFactors = FALSE)
+comicvine.data2 <- read.csv('data/comicvine_data2.csv', stringsAsFactors = FALSE)
+comicvine.data3 <- read.csv('data/comicvine_data3.csv', stringsAsFactors = FALSE)
 
 # Combine CSVs
 comicvine.data <- rbind(comicvine.data1, comicvine.data2, comicvine.data3)
