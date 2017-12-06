@@ -21,8 +21,20 @@ shinyServer(function(input, output) {
     publisher.female.characters <- female.characters %>%
       filter(publisher.name == input$publisher)
     
-    # Render the bar chart
+    # Plot the bar chart
     
+  })
+  
+  output$character.comparison <- renderTable({
+    # Get the female character data
+    female.character <- female.characters %>%
+      filter(name == input$female)
+    
+    # Get the male character data
+    male.character <- male.characters %>%
+      filter(name == input$male)
+    
+    # Make the comparison table
   })
 })
 
