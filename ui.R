@@ -35,10 +35,10 @@ shinyUI(
       sidebarPanel(
         h3("need a title"),
         br(),
-        selectizeInput("a", "Superhero A", character.names, multiple = FALSE,
+        selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                        onInitialize = I('function() { this.setValue(""); }'))),
-        selectizeInput("b", "Superhero B", character.names, multiple = FALSE,
+        selectizeInput("male", "Male Superhero", male.names, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue(""); }')))
         ),
