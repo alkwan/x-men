@@ -19,9 +19,8 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                         h4("need a title"),
                         select2Input("a",label = "Superhero A","",choices=as.character(character.names),type = c("input", "select")),
                         select2Input("b", label = "Superhero B","",choices=as.character(character.names),type = c("input", "select"))
-                        )
-                      ),
-                     
+                        ),
+                
                   mainPanel(
                        h4("Shot Chart of Players"),
                        splitLayout(cellwidths=c("50%","50%"),plotOutput("plot9"),plotOutput("plot10")),
@@ -35,7 +34,7 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                        splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot16"),plotlyOutput("plot17")),
                        h4("Comparison of Offense Diversity (Pie)"),
                        splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot18"),plotlyOutput("plot19"))
-                  )
+                  ))
                 ),
         
           
@@ -43,7 +42,7 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                     sidebarPanel(
                       h4("need a title"),
                       select2Input("publisher", label = "Select a publisher","",choices=as.character(publishers),type = c("input", "select"))
-                    )
+                    
                   ),
                     mainPanel(
                                 h4("Description"),
@@ -59,7 +58,7 @@ shinyUI(navbarPage(theme = shinytheme("lumen"),"Not named yet", position = "fixe
                                          plotOutput("plotc2",width = "800", height = "600"),align="Center")
                                 
                                 
-                              )
+                              ))
                   ),
                    
                   tabPanel("Report by year", sidebarLayout(
