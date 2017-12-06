@@ -33,7 +33,11 @@ vignettes/*.pdf
 *.knit.md
 
 # API Key
+<<<<<<< HEAD
 /comic-key.R
 
 # DS Store
 /.DS_Store
+=======
+/api-key.R
+>>>>>>> alaina-branch
