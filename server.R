@@ -18,8 +18,12 @@ shinyServer(function(input, output) {
   # Make the barchart of characters by gender per publisher
   output$chart <- renderPlotly({
     # Plot the bar chart
-    return(generateBarchart(comicvine.data, input$publisher1, input$publisher2))
-    
+    generateBarchart(comicvine.data, input$publisher1, input$publisher2)
+  })
+  
+  output$pie <- renderPlotly({
+    # Plot the pie charts
+    makePieChart(comicvine.data, input$publisher1, input$publisher2)
   })
   
   output$character.comparison <- renderTable({

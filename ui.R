@@ -76,10 +76,8 @@ shinyUI(
         p(h5("This special part serves the research function of re-clustering the habit of shot of players. Traditionally, the league always cluster the shot of players by the defined area of the court. However, the revolution of the training technique makes some players really crazy. Therefore, it is not quite scientific to research the shot data by the traditional court division. Therefore, we implement K-means cluster analysis to re-group the shot data of each player. We believe that clustering the shot data for each player will be beneficial to formulate the defending strategy against the player. For a commonly asked question referring to the cluster analysis, the number of clusters, we think the # of clusters is better decided by the user him/herself. The scientific number of clusters can be visualized by the specific shooting plot",align="Justify")),
         h4("Clustering analysis for all shot data"),
         p(h5("Firstly, we group all data of the player. Different colors represent different clusters")),
-        fluidRow(column=8,
-                  plotlyOutput('chart',width = "800", height = "600"),align="Center")
-                              
-      )
+        plotlyOutput('chart'),
+        plotlyOutput('pie')
     )
   ),
                    
@@ -115,5 +113,6 @@ shinyUI(
       mainPanel(dataTableOutput("shotlog"))
     )
     )
+  )
   )
 )
