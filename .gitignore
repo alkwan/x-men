@@ -33,7 +33,7 @@ vignettes/*.pdf
 *.knit.md
 
 # API Key
-comic-key.R
+/comic-key.R
 
 # DS Store
-.DS_Store
+/.DS_Store
