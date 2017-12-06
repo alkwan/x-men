@@ -3,8 +3,8 @@ library(dplyr)
 library(plotly)
 
 # Import comicvine data 
-#source('./data/comicvine-data.R')
-source('./data/random.R')
+source('./data/comicvine-data.R')
+#source('./data/random.R')
 
 gender.counts <- comicvine.data %>%
   group_by(publisher.name) %>%
@@ -33,13 +33,15 @@ generateBarchart <- function(data, publisher1 = 'DC Comics', publisher2 = 'Marve
   desired.df <- data.frame(publisher.name, males, females)
   colnames(desired.df)[2:3] <- c("males", "females")
   
-  p <- plot_ly(desired.df, x = ~publisher.name, y = ~males, type = 'bar', name = "Males",
-               hovertext = ~paste0("State: ", "<br>$", "M")) %>%
-    add_trace(y = ~females, name = "Females") %>%
+  p <- plot_ly(desired.df, x = ~publisher.name, y = ~males, type = 'bar', name = "Males", 
+               marker=list(color='rgb(79, 160, 75)')) %>%
+    add_trace(y = ~females, name = "Females", marker=list(color='rgb(232, 186, 81)')) %>%
     layout(title = paste("Gender of Comic Book Characters by Publisher"),
            xaxis = list(title = "Publisher"),
            yaxis = list(title = "Count")
     )
   return(p)
 }
+
+generateBarchart(comicvine.data,"Marvel", "DC Comics")
 

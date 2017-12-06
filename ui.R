@@ -82,7 +82,7 @@ shinyUI(
                   h4("Clustering analysis for all made shot"),
                   p(h5("Also, a similar analysis is conducted with the data of made shot. The player may be able to shoot more accurately in some specific area. Therefore, clustering the made shot will be also helpful to formulate a specific defending strategy."),align="Justify"),
         fluidRow(column=8,
-                  plotOutput("plotc2",width = "800", height = "600"),align="Center")
+                  plotOutput("chart",width = "800", height = "600"),align="Center")
                               
       )
     )

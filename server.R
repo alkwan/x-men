@@ -8,21 +8,25 @@ library(dplyr)
 
 # Read in the data
 source('./data/comicvine-data.R')
+source('./data/random.R')
 source('comic-vine.R')
+
+source('./scripts/GenerateBarchart.R')
 
 shinyServer(function(input, output) {
   
   # Make the barchart of characters by gender per publisher
-  output$chart <- renderPlot({
+  output$chart <- renderPlotly({
     # Grab all the male characters from the inputted publisher
-    publisher.male.characters <- male.characters %>%
-      filter(publisher.name == input$publisher)
+    #publisher.male.characters <- male.characters %>%
+    #  filter(publisher.name == input$publisher)
     
     # Grab all the female characters from the inputted publisher
-    publisher.female.characters <- female.characters %>%
-      filter(publisher.name == input$publisher)
+    #publisher.female.characters <- female.characters %>%
+    #  filter(publisher.name == input$publisher)
     
     # Plot the bar chart
+    return(generateBarchart(comicvine.data, "DC Comics", "Marvel"))
     
   })
   
