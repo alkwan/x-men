@@ -40,8 +40,6 @@ get.friends <- data.frame(t(sapply(convert.friends$name,c)))
 convert.powers <- data.frame(t(sapply(convert.all$powers,c)))
 get.powers <- data.frame(t(sapply(convert.powers$name,c)))
 
-# 
-
 # Issue
 issue <- data.chosen$first_appeared_in_issue.id
 issue <- issue[1]
