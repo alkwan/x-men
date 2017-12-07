@@ -14,7 +14,12 @@ source('comic-vine.R')
 source('./scripts/GenerateBarchart.R')
 
 shinyServer(function(input, output) {
-  
+  female.chosen <- reactive({female.characters %>% filter(name == input$female)})
+  male.chosen <- reactive({male.characters %>% filter(name == input$male)})
+  src.1 <- reactive({female.chosen()$image.screen_url})
+  src.2 <- reactive({male.chosen()$image.screen_url})
+  output$picture.1<-renderText({c('<img src="',src.1()[1],'">')})
+  output$picture.2<-renderText({c('<img src="',src.2()[1],'">')})
   # Make the barchart of characters by gender per publisher
   output$chart <- renderPlotly({
     # Plot the bar chart
