@@ -11,41 +11,45 @@ shinyUI(
   navbarPage(
     theme = shinytheme("united"),"Gender Diversity in Comics", position = "static-top",
       
-    tabPanel("Project Description",
-      h2("About Our Project"),
-      p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
-      Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
-      we looked at ",a("Comic Vine", href = "https://comicvine.gamespot.com/api/"),"'s API. Our goal with this project is to
-      see if there are any disparities between gender when it comes to comic book characters. If there are, where do they
-      appear?"),
-                     
-      h2("The Data"),
-      p("We sorted through Comic Vine's extensive comic book character data, getting over 100,000 results to analyze.
-        We've chosen to visualize the data in the following ways: a side by side character comparison chart (male vs female),
-        a bar chart showing the number of female and male characters per publisher (and comparing the two), and a line graph
-        showing the number of male and female characters created each year. We hope to see if there are any major differences
-        when comparing male and female characters, if publishers are truly committed to gender equality initiatives in comics,
-        and if the number of female characters created has changed over the years"),
-                     
-      h2("Our Audience"),
-      p("As stated earlier, comic fans and the comic book industry are often seen as a boy's club. But we
-        believe that comics should be inclusive and for everyone. We hope to reach and encourage any girls who
-        wonder if they, too, have a place in comic book fandom. We also hope to reach publishers and creators to show that,
-        even in 2017, gender equity is still lacking.")
+    tabPanel("Project Description", sidebarLayout(
+      sidebarPanel(
+        h4("About Our Project"),
+        p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
+          Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
+          we looked at ",a("Comic Vine", href = "https://comicvine.gamespot.com/api/"),"'s API. Our goal with this project is to
+          see if there are any disparities between gender when it comes to comic book characters. If there are, where do they
+          appear?"),
+        
+        h4("The Data"),
+        p("We sorted through Comic Vine's extensive comic book character data, getting over 100,000 results to analyze.
+          We've chosen to visualize the data in the following ways: a side by side character comparison chart (male vs female),
+          a bar chart showing the number of female and male characters per publisher (and comparing the two), and a line graph
+          showing the number of male and female characters created each year."),
+        
+        h4("Our Audience"),
+        p("As stated earlier, comic fans and the comic book industry are often seen as a boy's club. But we
+          believe that comics should be inclusive and for everyone. We hope to reach and encourage any girls who
+          wonder if they, too, have a place in comic book fandom. We also hope to reach publishers and creators to show that,
+          even in 2017, gender equity is still lacking.")
+        ),
+      mainPanel(
+        img(src='https://comicvine.gamespot.com/api/image/scale_small/5505344-bpsyxk4ciyn8odvaxpoj.png')
+      )
+      )
     ),
                    
-  tabPanel("Superhero Comparison",sidebarLayout(
+    tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
-        h3("Female and Male Superhero Comparisons"),
+        h4("Female and Male Superhero Comparisons"),
         p("Enter the name of a female character and a male character to compare their images and
-          characteristics"),
+          characteristics."),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue("Phantom Girl"); }'))),
-        selectizeInput("male", "Male Superhero", male.names, selected = male.names[1], multiple = FALSE,
+                                      onInitialize = I('function() { this.setValue("Kamala Khan"); }'))),
+        selectizeInput("male", "Male Superhero", male.names, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name',
-                                      onInitialize = I('function() { this.setValue("Brainiac 5"); }')))
+                                      onInitialize = I('function() { this.setValue("Damian Wayne"); }')))
         ),
                 
       mainPanel(

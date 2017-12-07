@@ -1,0 +1,12 @@
+name: genderincomics
+title: genderincomics
+username:
+account: alkwan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 245577
+bundleId: 1120437
+url: https://alkwan.shinyapps.io/genderincomics/
+when: 1512631236.88224
+asMultiple: FALSE
+asStatic: FALSE
