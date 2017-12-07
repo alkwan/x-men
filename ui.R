@@ -61,7 +61,7 @@ shinyUI(
           
     tabPanel("Report by Publisher", sidebarLayout(
       sidebarPanel(
-        h4("need a title"),
+        h4("Select / type in two publishers"),
         selectizeInput("publisher", "Publisher 1", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue(""); }'))),
