@@ -61,32 +61,33 @@ shinyUI(
         
           
     tabPanel("Report by Publisher", sidebarLayout(
+      
       sidebarPanel(
         h4("need a title"),
-        selectizeInput("publisher", "Publisher 1", publishers, multiple = FALSE,
+        selectizeInput("publisher1", "Publisher 1", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue(""); }'))),
-        selectizeInput("publisher", "Publisher 2", publishers, multiple = FALSE,
+                                      onInitialize = I('function() { this.setValue("Marvel"); }'))),
+        selectizeInput("publisher2", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue(""); }')))
+                                      onInitialize = I('function() { this.setValue("DC Comics"); }'))
+                      )
       ),
       
       mainPanel(
-        h4("Description"),
-        p(h5("This special part serves the research function of re-clustering the habit of shot of players. Traditionally, the league always cluster the shot of players by the defined area of the court. However, the revolution of the training technique makes some players really crazy. Therefore, it is not quite scientific to research the shot data by the traditional court division. Therefore, we implement K-means cluster analysis to re-group the shot data of each player. We believe that clustering the shot data for each player will be beneficial to formulate the defending strategy against the player. For a commonly asked question referring to the cluster analysis, the number of clusters, we think the # of clusters is better decided by the user him/herself. The scientific number of clusters can be visualized by the specific shooting plot",align="Justify")),
-        h4("Clustering analysis for all shot data"),
-        p(h5("Firstly, we group all data of the player. Different colors represent different clusters")),
-        fluidRow(column=8,
-                  plotOutput("plotc1",width = "800", height = "600"),align="Center"),
-                  br(),
-                  h4("Clustering analysis for all made shot"),
-                  p(h5("Also, a similar analysis is conducted with the data of made shot. The player may be able to shoot more accurately in some specific area. Therefore, clustering the made shot will be also helpful to formulate a specific defending strategy."),align="Justify"),
+        h2("Gender by Publisher Comparison"),
+        p(h5("Shown below are two charts that both show comic book character
+             comparisons based on publisher. The bar chart shows the"),align="Justify"),
+        br(),
+        br(),
         fluidRow(#column=8,
-                  plotlyOutput("chart",width = "800", height = "600"),align="Center")
+                  plotlyOutput("chart",width = "800", height = "600"),
+                  br(),
+                  br(),
+                  br(),
+                  plotlyOutput("pie", width = "800", height  = "600"),align="Center")
                               
       )
-    )
-  ),
+    )),
                    
     tabPanel("Report by year", 
              tags$head(tags$style(HTML(".multicol{font-size:15px;

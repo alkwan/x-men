@@ -7,26 +7,23 @@ library(dplyr)
 # setwd('~/documents/documents/uw_homework/info_201/assignments/x-men')
 
 # Read in the data
-source('./data/comicvine-data.R')
-source('./data/random.R')
+#source('./data/comicvine-data.R')
+#source('./data/random.R')
 source('comic-vine.R')
 
 source('./scripts/GenerateBarchart.R')
+source('./scripts/makePieChart.R')
 
 shinyServer(function(input, output) {
   
   # Make the barchart of characters by gender per publisher
   output$chart <- renderPlotly({
-    # Grab all the male characters from the inputted publisher
-    #publisher.male.characters <- male.characters %>%
-    #  filter(publisher.name == input$publisher)
+    generateBarchart(comicvine.data, input$publisher1, input$publisher2)
     
-    # Grab all the female characters from the inputted publisher
-    #publisher.female.characters <- female.characters %>%
-    #  filter(publisher.name == input$publisher)
-    
-    # Plot the bar chart
-    return(generateBarchart(comicvine.data, "DC Comics", "Marvel"))
+  })
+  
+  output$pie <- renderPlotly({
+    makePieChart(comicvine.data, input$publisher1, input$publisher2)
     
   })
   
