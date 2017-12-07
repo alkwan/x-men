@@ -23,8 +23,8 @@ shinyUI(
         h4("The Data"),
         p("We sorted through Comic Vine's extensive comic book character data, getting over 100,000 results to analyze.
           We've chosen to visualize the data in the following ways: a side by side character comparison chart (male vs female),
-          a bar chart showing the number of female and male characters per publisher (and comparing the two), and a line graph
-          showing the number of male and female characters created each year."),
+          a bar chart showing the number of female and male characters per publisher (and comparing the two), and a table showing
+          the 50 largest publishers sorted by best female to male gender ratio."),
         
         h4("Our Audience"),
         p("As stated earlier, comic fans and the comic book industry are often seen as a boy's club. But we
@@ -83,7 +83,7 @@ shinyUI(
     )
   ),
                    
-    tabPanel("Report by year", 
+    tabPanel("Gender Ratios", 
              tags$head(tags$style(HTML(".multicol{font-size:15px;
                                                   height:balance;
                                        -webkit-column-count: 2;
@@ -96,23 +96,15 @@ shinyUI(
           
       sidebarLayout(
         sidebarPanel(
-          controls <-list(tags$div(align = 'left', 
-                                   class = 'multicol', 
-                                   radioButtons(inputId  = 'year', 
-                                                label = "",
-                                                choices  = NULL,
-                                                selected = NULL,
-                                                inline   = FALSE, 
-                                                choiceNames = c("2000", "2001", "2002", "2003", "2004", "2005"), 
-                                                choiceValues = c(2000, 2001, 2002, 2003, 2004, 2005)
-                                   ))),
-          
-          h4("need a title"),
-          radioButtons("test", "Select a year", choices = NULL, selected = NULL,
-                       inline = FALSE, width = NULL, choiceNames = c("2000", "2001"), choiceValues = c(2000, 2001))
+          h4("Who has the best gender ratio?"),
+          p("We were curious to see who, out of the 50 largest publishers, had the 
+            greatest female to male gender ratio. Largest publisher was determined by
+            total number of characters. We chose this because simply looking at publishers
+            with the highest ratios were mostly adult and erotic comics, which we didn't
+            want to include.")
         ),
       
-        mainPanel(dataTableOutput("shotlog"))
+        mainPanel(dataTableOutput(bestGenderRatio(comicvine.data)))
       )
     )
   )

@@ -12,6 +12,7 @@ source('comic-vine.R')
 
 source('./scripts/GenerateBarchart.R')
 source('./scripts/makePieChart.R')
+source('./scripts/bestGenderRatio.R')
 
 shinyServer(function(input, output) {
   # Picture output for character comparison
@@ -69,5 +70,8 @@ shinyServer(function(input, output) {
       makePieChart(comicvine.data, input$publisher1, input$publisher2)
     }
   })
+  
+  # Output the table of top 50 publishers and their gender ratios
+  output$gender.table <- renderDataTable(top.publisher.ratios)
 })
 
