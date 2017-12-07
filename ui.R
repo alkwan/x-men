@@ -33,18 +33,19 @@ shinyUI(
   tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
-        h3("need a title"),
+        h4("Select / type in a name for a female superhero and a male superhero"),
         br(),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name')),
-        selectizeInput("male", "Male Superhero", male.names, selected = male.names[1], multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name'))
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name',
+                       onInitialize = I('function() { this.setValue("Phantom Girl"); }'))),
+        selectizeInput("male", "Male Superhero", male.names, multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name',
+                                      onInitialize = I('function() { this.setValue("Brainiac 5"); }')))
         ),
                 
       mainPanel(
-        h4("Shot Chart of Players"),
+        h3("Comparison Report"),
         splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
-        h4("Comparison of shot attempts"),
         splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot11"),plotlyOutput("plot12")),
         h4("Comparison of % Field Goal"),
         splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot13"),plotlyOutput("plot14")),
