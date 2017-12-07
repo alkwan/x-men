@@ -2,17 +2,12 @@
 library(dplyr)
 library(plotly)
 
-# Import comicvine data 
-source('./data/comicvine-data.R')
-#source('./data/random.R')
-
-gender.counts <- comicvine.data %>%
-  group_by(publisher.name) %>%
-  count(gender)
-
 # Function to generate barchart of gender diversity by publisher
 generateBarchart <- function(data, publisher1 = 'DC Comics', publisher2 = 'Marvel') {
-
+  gender.counts <- data %>%
+    group_by(publisher.name) %>%
+    count(gender)
+  
   desired.publishers <- gender.counts %>%
     filter((publisher.name == publisher1 | publisher.name == publisher2) &
              (gender == 1 | gender == 2))
