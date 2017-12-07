@@ -41,8 +41,7 @@ shinyUI(
         p("The authors of this project would like to acknowledge that gender diversity
           does not just mean male and female, but includes nonbinary genders as well.
           Comic Vine's API includes three designations for character gender--male, female,
-          and other. Unfortunately, the 'other' designation included animal characters and
-          nonhuman nongendered characters (like a character who is actually made of garbage).
+          and other. Unfortunately, the 'other' designation were nonhuman nongendered characters.
           We hope Comic Vine updates their API to reflect nonbinary characters in the future.")
         ),
       mainPanel(
