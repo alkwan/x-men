@@ -55,17 +55,18 @@ shinyUI(
         selectizeInput("publisher2", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue("Marvel"); }'))),
-        radioButtons("Type", "Select the type of chart", choices = NULL, selected = NULL,
-                     inline = FALSE, width = NULL, choiceNames = c("Bar Chart", "Pie Chart"), choiceValues = c(TRUE, FALSE))
+        radioButtons("type", "Select the type of chart", choices = c("Bar Chart", "Pie Chart"), selected = NULL,
+                     inline = FALSE, width = NULL)
       ),
       
       mainPanel(
         h4("Description"),
         p("Type in two publisher names and see the number breakdown of their female and male characters.
           Switch between bar charts and pie charts to see numbers versus percentages."),
-        plotlyOutput('chart'),
-        br(),br(),
-        plotlyOutput('pie')
+        br(),
+        br(),
+        br(),
+        plotlyOutput('type_of_chart', height = 500, width = 600)
       )
     )
   ),

@@ -23,14 +23,22 @@ shinyServer(function(input, output) {
   output$picture.2<-renderText({c('<img src="',src.2()[1],'">')})
   
   # Make the barchart of characters by gender per publisher
-  output$chart <- renderPlotly({
-    # Plot the bar chart
-    generateBarchart(comicvine.data, input$publisher1, input$publisher2)
-  })
+  #output$chart <- renderPlotly({
+  #  # Plot the bar chart
+  #  generateBarchart(comicvine.data, input$publisher1, input$publisher2)
+  #})
   
-  output$pie <- renderPlotly({
-    # Plot the pie charts
-    makePieChart(comicvine.data, input$publisher1, input$publisher2)
+  #output$pie <- renderPlotly({
+  #  # Plot the pie charts
+  #  makePieChart(comicvine.data, input$publisher1, input$publisher2)
+  #})
+  
+  output$type_of_chart <- renderPlotly({ 
+    if(input$type == "Bar Chart") {
+      generateBarchart(comicvine.data, input$publisher1, input$publisher2)
+    } else {
+      makePieChart(comicvine.data, input$publisher1, input$publisher2)
+    }
   })
  
   
