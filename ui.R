@@ -33,6 +33,7 @@ shinyUI(
   tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
+        width = 2,
         h4("Select / type in a name for a female superhero and a male superhero"),
         br(),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
@@ -44,8 +45,8 @@ shinyUI(
         ),
                 
       mainPanel(
+        splitLayout(cellWidths = 500,htmlOutput("picture.1"),htmlOutput("picture.2")),
         h3("Comparison Report"),
-        splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
         splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot11"),plotlyOutput("plot12")),
         h4("Comparison of % Field Goal"),
         splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot13"),plotlyOutput("plot14")),
