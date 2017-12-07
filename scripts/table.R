@@ -1,9 +1,10 @@
 library(httr)
 library(jsonlite)
 
+# Source comic-vine to get wrangled data
 source('comic-vine.R')
 
-female.chosen <- 'Wonder Woman'
+# Gets the number of apperances for the female character that was chosen
 ReturnInfoFemale <- function(female.chosen) {
   data.chosen.female <- CharacterAllInfo(female.chosen)
   date.female <- GetDate(data.chosen.female)
@@ -12,6 +13,7 @@ ReturnInfoFemale <- function(female.chosen) {
   return(female.info)
 }
 
+# Gets the number of apperances for the male character that was chosen
 ReturnInfoMale <- function(male.chosen) {
   data.chosen.male <- CharacterAllInfo(male.chosen)
   date.male <- GetDate(data.chosen.male)

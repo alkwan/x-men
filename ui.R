@@ -1,4 +1,4 @@
-
+# Load the libraries
 library(shinysky)
 library(shiny)
 library(ggplot2)
@@ -6,11 +6,16 @@ library(hexbin)
 library(shinythemes)
 library(plotly)
 library(js)
+
+# Source in the data
 source('./data/comicvine-data.R')
+
+# UI for our final project
 shinyUI(
   navbarPage(
     theme = shinytheme("united"),"Gender Diversity in Comics", position = "static-top",
-      
+    
+    # Project description tab
     tabPanel("Project Description", sidebarLayout(
       sidebarPanel(
         h4("About Our Project"),
@@ -30,14 +35,23 @@ shinyUI(
         p("As stated earlier, comic fans and the comic book industry are often seen as a boy's club. But we
           believe that comics should be inclusive and for everyone. We hope to reach and encourage any girls who
           wonder if they, too, have a place in comic book fandom. We also hope to reach publishers and creators to show that,
-          even in 2017, gender equity is still lacking.")
+          even in 2017, gender equity is still lacking."),
+        
+        h4("A Note on Gender"),
+        p("The authors of this project would like to acknowledge that gender diversity
+          does not just mean male and female, but includes nonbinary genders as well.
+          Comic Vine's API includes three designations for character gender--male, female,
+          and other. Unfortunately, the 'other' designation included animal characters and
+          nonhuman nongendered characters (like a character who is actually made of garbage).
+          We hope Comic Vine updates their API to reflect nonbinary characters in the future.")
         ),
       mainPanel(
         img(src='https://comicvine.gamespot.com/api/image/scale_small/5505344-bpsyxk4ciyn8odvaxpoj.png')
       )
       )
     ),
-                   
+    
+    # Tab where we compare a female superhero and male superhero             
     tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
@@ -59,7 +73,8 @@ shinyUI(
       )
     )
   ),   
-          
+    
+  # Tab where we compare publishers and their character gender breakdowns     
     tabPanel("Report by Publisher", sidebarLayout(
       sidebarPanel(
         h4("Gender by Publisher"),
@@ -80,7 +95,8 @@ shinyUI(
       )
     )
   ),
-                   
+   
+  # Tab where we looked at the 50 largest publishing companies' gender ratios                
     tabPanel("Gender Ratios", 
              tags$head(tags$style(HTML(".multicol{font-size:15px;
                                                   height:balance;

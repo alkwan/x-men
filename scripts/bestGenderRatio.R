@@ -30,6 +30,7 @@ bestGenderRatio <- function(data) {
   top.publisher.ratios <- gender.ratios[1:50,] %>%
     arrange(-female.ratio)
   
+  # Rename the columns to look nice
   colnames(top.publisher.ratios) <- c("Publisher", "Male Characters", "Female Characters",
                                       "Total Characters", "Percent Male", "Percent Female")
   
