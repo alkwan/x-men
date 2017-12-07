@@ -54,7 +54,8 @@ shinyUI(
                 
       mainPanel(
         h4("Character Comparison"),
-        splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2"))
+        splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
+        tableOutput('character.comparison')
       )
     )
   ),   

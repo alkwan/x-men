@@ -3,8 +3,9 @@ library(dplyr)
 library(httr)
 
 source('comic-key.R')
+source('./scripts/table.R')
 
-url <- "http://comicvine.com/api/"
+url <- "http://comicvine.gamespot.com/api/"
 api <- "/?api_key="
 
 # # Gender data
@@ -15,12 +16,13 @@ api <- "/?api_key="
 # data.gender <- flatten(gender.results$results)
 
 # Character chosen by user
-CharacterAllInfo <- function(name) {
+CharacterAllInfo <- function(name.sent) {
+  name <- name.sent
   chosen.url <- paste0(url, 'characters', api, comic.vine, '&filter=name:', name, '&field_list=name,gender,id,birth,publisher,first_appeared_in_issue,count_of_issue_appearances,image&sort=count_of_issue_appearances:desc&format=json')
   chosen.response <- GET(chosen.url)
   chosen.body <- content(chosen.response, "text")
-  chosen.results <- fromJSON(chosen.body) 
-  data.chosen <- flatten(chosen.results$results)
+  chosen.results <- fromJSON(chosen.body)
+  data.chosen <- chosen.results$results
   return(data.chosen)
 }
 
@@ -52,8 +54,9 @@ GetPowers <- function(convert.all) {
 # Get the date of when the character was first published
 # Assumption made is that the character with the most appearances is the original character
 GetDate <- function(data.chosen) {
-  issue <- data.chosen$first_appeared_in_issue.id
-  issue <- issue[1]
+  issue <- data.chosen$first_appeared_in_issue
+  issue.id <- issue$id
+  issue <- issue.id[1]
   issue.url <- paste0(url, 'issue/4000-', issue, api, comic.vine, '&format=json')
   response.issue <- GET(issue.url)
   body.issue <- content(response.issue, "text")
