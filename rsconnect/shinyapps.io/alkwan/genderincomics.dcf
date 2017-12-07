@@ -5,8 +5,8 @@ account: alkwan
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 245577
-bundleId: 1120437
+bundleId: 1120449
 url: https://alkwan.shinyapps.io/genderincomics/
-when: 1512631236.88224
+when: 1512631703.14763
 asMultiple: FALSE
 asStatic: FALSE
