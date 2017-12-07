@@ -21,8 +21,8 @@ shinyServer(function(input, output) {
   male.chosen <- reactive({male.characters %>% filter(name == input$male)})
   male.name <- reactive({male.names %>% filter(name == input$male)})
   female.name <- reactive({female.names %>% filter(name == input$female)})
-  src.1 <- reactive({female.chosen()$image.screen_url})
-  src.2 <- reactive({male.chosen()$image.screen_url})
+  src.1 <- reactive({female.chosen()$image.small_url})
+  src.2 <- reactive({male.chosen()$image.small_url})
   output$picture.1<-renderText({c('<img src="',src.1()[1],'">')})
   output$picture.2<-renderText({c('<img src="',src.2()[1],'">')})
   male.appearance <- reactive({data <- male.chosen()$count_of_issue_appearances

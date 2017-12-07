@@ -41,10 +41,10 @@ shinyUI(
     tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
-        width = 2,
+        width = 3,
         h4("Female and Male Superhero Comparisons"),
         p("Enter the name of a female character and a male character to compare their images and
-          characteristics."),
+          the number of times they've appeared in comic book issues."),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
                                       onInitialize = I('function() { this.setValue("Kamala Khan"); }'))),
@@ -54,9 +54,8 @@ shinyUI(
         ),
                 
       mainPanel(
-        h4("Character Comparison"),
-        splitLayout(cellwidths=500,htmlOutput("picture.1"),htmlOutput("picture.2")),
-        splitLayout(cellwidths=500,tableOutput('character.female.comparison'),tableOutput('character.male.comparison'))
+        splitLayout(cellwidths=c("50%", "50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
+        splitLayout(cellwidths=c("50%", "50%"),tableOutput('character.female.comparison'),tableOutput('character.male.comparison'))
       )
     )
   ),   
@@ -77,9 +76,6 @@ shinyUI(
       ),
       
       mainPanel(
-        br(),
-        br(),
-        br(),
         plotlyOutput('type_of_chart', height = 500, width = 600)
       )
     )
