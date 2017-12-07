@@ -12,54 +12,46 @@ source('comic-vine.R')
 
 source('./scripts/GenerateBarchart.R')
 source('./scripts/makePieChart.R')
+source('./scripts/bestGenderRatio.R')
+source('./scripts/table.R')
 
 shinyServer(function(input, output) {
   # Picture output for character comparison
   female.chosen <- reactive({female.characters %>% filter(name == input$female)})
   male.chosen <- reactive({male.characters %>% filter(name == input$male)})
+  male.name <- reactive({male.names %>% filter(name == input$male)})
+  female.name <- reactive({female.names %>% filter(name == input$female)})
   src.1 <- reactive({female.chosen()$image.screen_url})
   src.2 <- reactive({male.chosen()$image.screen_url})
   output$picture.1<-renderText({c('<img src="',src.1()[1],'">')})
   output$picture.2<-renderText({c('<img src="',src.2()[1],'">')})
+  male.appearance <- reactive({data <- male.chosen()$count_of_issue_appearances
+                                data <- data[1]
+                                return(data)})
+  comparison.male.frame <- reactive({comparison.data <- data.frame(male.name(), male.appearance())
+                                colnames(comparison.male.frame) <- c("Male Name", "Male Apperances")
+                                return(comparison.data)})
+  
+  female.appearance <- reactive({data <- female.chosen()$count_of_issue_appearances
+  data <- data[1]
+  return(data)})
+  
+  comparison.female.frame <- reactive({comparison.data <- data.frame(female.name(), female.appearance())
+  colnames(comparison.female.frame) <- c("Female Name", "Female Apperances")
+  return(comparison.data)})
   
   # The table of character comparison data.
-  output$character.comparison <- renderTable({
-    # Get the female character data
-    # female.character <- female.characters %>%
-    #   filter(name == input$female)
-    data.chosen.female <- CharacterAllInfo('Superman')
-    convert.all.female <- tryCatch(
-      CharacterChosenInfo(data.chosen.female),
-      error = function(error_message) {
-        powers.female <- "Not available"
-      })
-    if(convert.all.female[1] == "Not available") {
-      powers.female <- "Not available"
-    } else {
-      powers.female <- GetPowers(convert.all.female)
-    }
-    date.female <- GetDate(data.chosen.female)
-    appearances.female <- data.chosen.female$count_of_issue_appearances
-    
-    # Get the male character data
-    # male.character <- male.characters %>%
-    #   filter(name == input$male)
-    data.chosen.male <- CharacterAllInfo(input$male)
-    convert.all.male <- tryCatch(
-      CharacterChosenInfo(data.chosen.male),
-      error = function(error_message) {
-        powers.male <- "Not available"
-      })
-    if(convert.all.male[1] == "Not available") {
-      powers.male <- "Not available"
-    } else {
-      powers.male <- GetPowers(convert.all.male)
-    }
-    date.male <- GetDate(data.chosen.male)
-    appearances.male <- data.chosen.male$count_of_issue_appearances
-    
-    # Make the comparison table
-  })
+  output$character.male.comparison <- renderTable({
+    head(comparison.male.frame(), n = 6)},
+    bordered = TRUE,
+    hover = TRUE, spacing = 'l',
+    align = 'c')
+  
+  output$character.female.comparison <- renderTable({
+    head(comparison.female.frame(), n = 6)},
+    bordered = TRUE,
+    hover = TRUE, spacing = 'l',
+    align = 'c')
   
   # Output either the bar chart or the pie chart.
   output$type_of_chart <- renderPlotly({ 
@@ -69,5 +61,8 @@ shinyServer(function(input, output) {
       makePieChart(comicvine.data, input$publisher1, input$publisher2)
     }
   })
+  
+  # Output the table of top 50 publishers and their gender ratios
+  output$gender.table <- renderDataTable(bestGenderRatio(comicvine.data))
 })
 

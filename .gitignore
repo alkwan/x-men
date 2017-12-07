@@ -36,9 +36,4 @@ vignettes/*.pdf
 *.knit.md
 
 # API Key
-<<<<<<< HEAD
-/comic-key.R
-
-=======
-/api-key.R
->>>>>>> alaina-branch
+comic-key.R

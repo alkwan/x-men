@@ -16,7 +16,7 @@ publishers <- comicvine.data %>%
 
 # Get all male characters
 male.characters <- comicvine.data %>%
-  select(name, real_name, gender, image.screen_url, image.small_url, publisher.name) %>%
+  select(name, real_name, gender, image.screen_url, image.small_url, publisher.name, count_of_issue_appearances) %>%
   filter(gender == '1')
 
 # Get all male characters' names
@@ -24,7 +24,7 @@ male.names <- male.characters %>% select(name) %>% unique()
 
 # Get all female characters' names
 female.characters <- comicvine.data %>%
-  select(name, real_name, gender, image.screen_url, image.small_url, publisher.name) %>%
+  select(name, real_name, gender, image.screen_url, image.small_url, publisher.name, count_of_issue_appearances) %>%
   filter(gender == '2')
 
 # Get all female characters
