@@ -36,16 +36,14 @@ shinyUI(
         h3("need a title"),
         br(),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                       onInitialize = I('function() { this.setValue(""); }'))),
-        selectizeInput("male", "Male Superhero", male.names, multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue(""); }')))
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name')),
+        selectizeInput("male", "Male Superhero", male.names, selected = male.names[1], multiple = FALSE,
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name'))
         ),
                 
       mainPanel(
         h4("Shot Chart of Players"),
-        splitLayout(cellwidths=c("50%","50%"),plotOutput("plot9"),plotOutput("plot10")),
+        splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
         h4("Comparison of shot attempts"),
         splitLayout(cellwidths=c("50%","50%"),plotlyOutput("plot11"),plotlyOutput("plot12")),
         h4("Comparison of % Field Goal"),
