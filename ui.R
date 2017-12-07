@@ -13,6 +13,7 @@ shinyUI(
       
     tabPanel("Project Description", sidebarLayout(
       sidebarPanel(
+        width = 6,
         h4("About Our Project"),
         p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
           Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
@@ -41,6 +42,7 @@ shinyUI(
     tabPanel("Superhero Comparison",sidebarLayout(
         
       sidebarPanel(
+        width = 2,
         h4("Female and Male Superhero Comparisons"),
         p("Enter the name of a female character and a male character to compare their images and
           characteristics."),
@@ -54,9 +56,8 @@ shinyUI(
                 
       mainPanel(
         h4("Character Comparison"),
-        splitLayout(cellwidths=c("50%","50%"),htmlOutput("picture.1"),htmlOutput("picture.2")),
-        tableOutput('character.male.comparison'),
-        tableOutput('character.female.comparison')
+        splitLayout(cellwidths=500,htmlOutput("picture.1"),htmlOutput("picture.2")),
+        splitLayout(cellwidths=500,tableOutput('character.male.comparison'),tableOutput('character.female.comparison'))
       )
     )
   ),   
