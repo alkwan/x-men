@@ -72,6 +72,6 @@ shinyServer(function(input, output) {
   })
   
   # Output the table of top 50 publishers and their gender ratios
-  output$gender.table <- renderDataTable(top.publisher.ratios)
+  output$gender.table <- renderDataTable(bestGenderRatio(comicvine.data))
 })
 

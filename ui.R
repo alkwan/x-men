@@ -104,7 +104,7 @@ shinyUI(
             want to include.")
         ),
       
-        mainPanel(dataTableOutput(bestGenderRatio(comicvine.data)))
+        mainPanel(dataTableOutput("gender.table"))
       )
     )
   )
