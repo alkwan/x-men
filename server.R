@@ -12,6 +12,7 @@ source('./data/comicvine-data.R')
 source('comic-vine.R')
 
 source('./scripts/GenerateBarchart.R')
+source('./scripts/makePieChart.R')
 
 shinyServer(function(input, output) {
   female.chosen <- reactive({female.characters %>% filter(name == input$female)})

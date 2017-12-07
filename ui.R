@@ -63,10 +63,10 @@ shinyUI(
         h4("need a title"),
         selectizeInput("publisher1", "Publisher 1", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue(""); }'))),
+                                      onInitialize = I('function() { this.setValue("DC Comics"); }'))),
         selectizeInput("publisher2", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue(""); }')))
+                                      onInitialize = I('function() { this.setValue("Marvel"); }')))
       ),
       
       mainPanel(
