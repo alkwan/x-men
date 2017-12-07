@@ -29,7 +29,6 @@ shinyServer(function(input, output) {
                                 data <- data[1]
                                 return(data)})
   comparison.male.frame <- reactive({comparison.data <- data.frame(male.name(), male.appearance())
-                                colnames(comparison.male.frame) <- c("Male Name", "Male Apperances")
                                 return(comparison.data)})
   
   female.appearance <- reactive({data <- female.chosen()$count_of_issue_appearances
@@ -37,7 +36,6 @@ shinyServer(function(input, output) {
   return(data)})
   
   comparison.female.frame <- reactive({comparison.data <- data.frame(female.name(), female.appearance())
-  colnames(comparison.female.frame) <- c("Female Name", "Female Apperances")
   return(comparison.data)})
   
   # The table of character comparison data.
