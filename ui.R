@@ -13,6 +13,7 @@ shinyUI(
       
     tabPanel("Project Description", sidebarLayout(
       sidebarPanel(
+        width = 4,
         h4("About Our Project"),
         p("The comic book industry is often thought of as a boys club, but it's 2017 and feminism seems to be on the rise.
           Gender equality initiatives seem to be happening all over the STEM field, but is it happening in comics? To find out,
