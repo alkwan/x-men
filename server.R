@@ -21,6 +21,7 @@ shinyServer(function(input, output) {
   src.2 <- reactive({male.chosen()$image.screen_url})
   output$picture.1<-renderText({c('<img src="',src.1()[1],'">')})
   output$picture.2<-renderText({c('<img src="',src.2()[1],'">')})
+  
   # Make the barchart of characters by gender per publisher
   output$chart <- renderPlotly({
     # Plot the bar chart
@@ -31,6 +32,7 @@ shinyServer(function(input, output) {
     # Plot the pie charts
     makePieChart(comicvine.data, input$publisher1, input$publisher2)
   })
+ 
   
   output$character.comparison <- renderTable({
     # Get the female character data

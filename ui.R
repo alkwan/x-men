@@ -1,3 +1,4 @@
+
 library(shinysky)
 library(shiny)
 library(ggplot2)
@@ -6,11 +7,6 @@ library(shinythemes)
 library(plotly)
 library(js)
 source('./data/comicvine-data.R')
-
-
-  
-  parameters <- c("A", "B", "C", "D")
-
 shinyUI(
   navbarPage(
     theme = shinytheme("united"),"Gender Diversity in Comics", position = "static-top",
@@ -36,9 +32,11 @@ shinyUI(
         h3("need a title"),
         br(),
         selectizeInput("female", "Female Superhero", female.names, multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name')),
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name', 
+                                      onInitialize = I('function() { this.setValue("Phantom Girl"); }'))),
         selectizeInput("male", "Male Superhero", male.names, selected = male.names[1], multiple = FALSE,
-                       options = list(maxOptions = 5, placeholder = 'Please type in the name'))
+                       options = list(maxOptions = 5, placeholder = 'Please type in the name',
+                                      onInitialize = I('function() { this.setValue("Brainiac 5"); }')))
         ),
                 
       mainPanel(
@@ -56,7 +54,9 @@ shinyUI(
                                       onInitialize = I('function() { this.setValue("DC Comics"); }'))),
         selectizeInput("publisher2", "Publisher 2", publishers, multiple = FALSE,
                        options = list(maxOptions = 5, placeholder = 'Please type in the name', 
-                                      onInitialize = I('function() { this.setValue("Marvel"); }')))
+                                      onInitialize = I('function() { this.setValue("Marvel"); }'))),
+        radioButtons("Type", "Select the type of chart", choices = NULL, selected = NULL,
+                     inline = FALSE, width = NULL, choiceNames = c("Bar Chart", "Pie Chart"), choiceValues = c(TRUE, FALSE))
       ),
       
       mainPanel(
@@ -64,6 +64,7 @@ shinyUI(
         p("Type in two publisher names and see the number breakdown of their female and male characters.
           Switch between bar charts and pie charts to see numbers versus percentages."),
         plotlyOutput('chart'),
+        br(),br(),
         plotlyOutput('pie')
       )
     )
